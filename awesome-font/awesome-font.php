@@ -54,7 +54,13 @@ function kdr_awesome_fonts_render_options_page(){
 				<input type="submit" name="submit" id="submit" class="button button-primary" value="<?php _e( 'Save Changes' ); ?>">
 			</form>
 		</div>
+		<div class="" >
+			<?php
+				echo "<h2>Select a tag to assign to your font</h2>";
+			?>
+			</div>
 		<?php
+
 }
 function kdr_awesome_fonts_add_settings(){
 	// Add the settings section to hold the interface
@@ -137,11 +143,19 @@ function kdr_awesome_fonts_font_family_choice(){
 			?>
 	</select>
 <?php
+//var_dump($font_family_input);
 
-$font_position = kdr_postion($font_family_input); 
-//var_dump($font_position['font_filename']); 
-//$font_position_placement = wp_remote_request('http://www.fontsquirrel.com/fontlist/'.$font_position.'');
-echo json_decode($font_position['body'], true);
+$font_position = kdr_postion($font_family_input);
+//$items = json_encode($font_position, true); 
+//var_dump($font_position);
+//var_dump($items{'family_name'}); 
+//echo $font_position -> family_name;
+//echo $font_position -> font_filename;
+$font_position_placement = wp_remote_request('http://www.fontsquirrel.com/fontfacekit/'.$font_position -> family_urlname.'');
+//var_dump($font_position_placement);
+echo $font_position_placement;
+//echo json_decode($font_position_placement["id"], true);
+
  //$test = json_decode($font_position_placement);
  //var_dump($test);
 
